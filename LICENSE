@@ -1,24 +1,3 @@
-github.com/bjdean/can_access_internet
-=====================================
-
-go executable - check if general internet access is possible
-
-Synopsis
---------
-
-	#!/bin/bash
-	
-	can_access_internet
-	if [ $? -eq 0 ]
-	then
-		# Do something requiring internet access
-	else
-		# Report internet access down
-	fi
-
-License
--------
-
 Copyright 2013 Bradley Dean
 
 This program is free software: you can redistribute it and/or modify
