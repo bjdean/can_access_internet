@@ -11,8 +11,8 @@ import (
 // If internet access is detected as down exit with 1
 // If some other error occurs print the error and exit with 2
 func main () {
-	can_access_internet, err := gonetcheck.CheckInternetAccess()
-	switch err {
+	can_access_internet, err_list := gonetcheck.CheckInternetAccess()
+	switch err_list {
 		case nil:
 			switch can_access_internet {
 				case true: os.Exit(0)
@@ -20,8 +20,8 @@ func main () {
 			}
 		default:
 			fmt.Println(
-				"Error returned by gonetcheck.CheckInternetAccess:",
-				err)
+				"Error(s) returned by gonetcheck.CheckInternetAccess:",
+				err_list)
 			os.Exit(2)
 	}
 }
