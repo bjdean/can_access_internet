@@ -1,4 +1,4 @@
-github.com/bjdean/can_access_internet
+github.com/bjdean/canAccessInternet
 =====================================
 
 go executable - check if general internet access is possible
@@ -8,7 +8,7 @@ Synopsis
 
 	#!/bin/bash
 	
-	can_access_internet
+	canAccessInternet
 	if [ $? -eq 0 ]
 	then
 		# Do something requiring internet access
