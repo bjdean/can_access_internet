@@ -1,0 +1,13 @@
+{
+	"Urls" : [
+		"http://www.google.com/",
+		"http://www.apple.com/",
+		"http://www.unimelb.edu.au/",
+		"http://www.microsoft.com/"
+	],
+	"TcpAddrs" : [
+		"www.google.com:80",
+		"www.google.com:443",
+		"tty.freeshell.org:22"
+	]
+}
