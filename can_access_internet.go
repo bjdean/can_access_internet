@@ -13,6 +13,8 @@ var progCfgFilepath string
 var verbose bool
 func init() {
 	flag.StringVar(&progCfgFilepath, "cfg", "", "configuration override")
+	flag.StringVar(&progCfgFilepath, "c", "", "configuration override")
+
 	flag.BoolVar(&verbose, "verbose", false, "verbose output")
 	flag.BoolVar(&verbose, "v", false, "verbose output")
 }
