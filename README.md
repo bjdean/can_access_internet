@@ -3,6 +3,8 @@ github.com/bjdean/canAccessInternet
 
 go executable - check if general internet access is possible
 
+See also: http://bjdean.id.au/wiki/Programming_Notes/GoLang
+
 Synopsis
 --------
 
