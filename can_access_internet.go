@@ -1,11 +1,11 @@
 package main
 
 import (
+	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/bjdean/gonetcheck"
 	"os"
-	"flag"
-	"encoding/json"
 	"time"
 )
 
@@ -13,6 +13,7 @@ import (
 var progCfgFilepath string
 var verbose bool
 var timeoutSeconds int
+
 func init() {
 	flag.StringVar(&progCfgFilepath, "cfg", "", "configuration override")
 	flag.StringVar(&progCfgFilepath, "c", "", "configuration override")
@@ -37,14 +38,14 @@ func main() {
 
 	var cfg progCfg
 	switch progCfgFilepath {
-		case "":
-			cfg = defaultProcCfg
-		default:
-			cfg = readJsonCfg(progCfgFilepath)
+	case "":
+		cfg = defaultProcCfg
+	default:
+		cfg = readJsonCfg(progCfgFilepath)
 	}
 
 	canAccessInternet, errList := gonetcheck.CheckInternetAccess(
-		time.Duration( time.Duration(timeoutSeconds) * time.Second ),
+		time.Duration(time.Duration(timeoutSeconds)*time.Second),
 		cfg.Urls,
 		cfg.TcpAddrs)
 	switch errList {
@@ -63,21 +64,29 @@ func main() {
 	}
 }
 
-func readJsonCfg (progCfgFilepath string) progCfg {
+func readJsonCfg(progCfgFilepath string) progCfg {
 	jsonFh, jsonFhErr := os.Open(progCfgFilepath)
-	if jsonFhErr != nil { panic(jsonFhErr) }
+	if jsonFhErr != nil {
+		panic(jsonFhErr)
+	}
 
 	fhStat, fhStatErr := jsonFh.Stat()
-	if fhStatErr != nil { panic(fhStatErr) }
+	if fhStatErr != nil {
+		panic(fhStatErr)
+	}
 
-	jsonBytes := make( []byte, fhStat.Size() )
+	jsonBytes := make([]byte, fhStat.Size())
 	_, readErr := jsonFh.Read(jsonBytes)
-	if readErr != nil { panic(readErr) }
+	if readErr != nil {
+		panic(readErr)
+	}
 	jsonFh.Close()
 
 	var cfg progCfg
 	unmarshalErr := json.Unmarshal(jsonBytes, &cfg)
-	if unmarshalErr != nil { panic(unmarshalErr) }
+	if unmarshalErr != nil {
+		panic(unmarshalErr)
+	}
 
 	return cfg
 }
@@ -89,7 +98,7 @@ type progCfg struct {
 
 // Default configuration
 var defaultProcCfg = progCfg{
-	Urls : []string{
+	Urls: []string{
 		"http://www.google.com/",
 		"http://www.bing.com/",
 		"http://www.microsoft.com/",
@@ -100,7 +109,7 @@ var defaultProcCfg = progCfg{
 		"http://www.monash.edu.au/",
 		"http://bbb.co.uk/",
 	},
-	TcpAddrs : []string{
+	TcpAddrs: []string{
 		"www.google.com:443",
 		"www.example.com:80",
 		"tty.freeshell.net:22",
