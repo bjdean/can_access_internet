@@ -6,17 +6,22 @@ import (
 	"os"
 	"flag"
 	"encoding/json"
+	"time"
 )
 
 // Command-line flags
 var progCfgFilepath string
 var verbose bool
+var timeoutSeconds int
 func init() {
 	flag.StringVar(&progCfgFilepath, "cfg", "", "configuration override")
 	flag.StringVar(&progCfgFilepath, "c", "", "configuration override")
 
 	flag.BoolVar(&verbose, "verbose", false, "verbose output")
 	flag.BoolVar(&verbose, "v", false, "verbose output")
+
+	flag.IntVar(&timeoutSeconds, "timeout", 10, "timeout (in seconds)")
+	flag.IntVar(&timeoutSeconds, "t", 10, "timeout (in seconds)")
 }
 
 // Check if internet access is possible
@@ -39,6 +44,7 @@ func main() {
 	}
 
 	canAccessInternet, errList := gonetcheck.CheckInternetAccess(
+		time.Duration( time.Duration(timeoutSeconds) * time.Second ),
 		cfg.Urls,
 		cfg.TcpAddrs)
 	switch errList {
