@@ -112,6 +112,5 @@ var defaultProcCfg = progCfg{
 	TcpAddrs: []string{
 		"www.google.com:443",
 		"www.example.com:80",
-		"tty.freeshell.net:22",
 	},
 }
