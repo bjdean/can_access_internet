@@ -5,6 +5,9 @@ go executable - check if general internet access is possible
 
 See also: http://bjdean.id.au/wiki/Programming_Notes/GoLang
 
+This program is a simple wrapper around the gonetcheck
+package: https://github.com/bjdean/gonetcheck
+
 Synopsis
 --------
 
